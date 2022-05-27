@@ -4,8 +4,8 @@ rm -rf output.avi
 
 cropsize=16
 
-numblocksX=7
-numblocksY=7
+numblocksX=16
+numblocksY=8
 
 ffmpeg -r 20 -hide_banner -i 3333.gif -vf scale=$((cropsize*numblocksX)):$((cropsize*numblocksY)) -c:v r210 output.avi
 
