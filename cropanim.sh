@@ -1,7 +1,7 @@
 
 count=0
 vidposX=0
-vidposY=0t
+vidposY=0
 cropsize=16
 #mkdir frames_block
 #mkdir blockanimframes
