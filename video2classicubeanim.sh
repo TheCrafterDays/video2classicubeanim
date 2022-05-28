@@ -1,20 +1,20 @@
 rm -rf output.avi
-
 if [ $# -eq 0 ]
   then
     echo "No arguments supplied"
-    echo "video2classicubeanim.sh anim.gif numblocksX numblocksY cropsize"
-    echo "example: ./video2classicubeanim.sh anim.gif 16 8 16"
+    echo "video2classicubeanim.sh anim.gif posX posY numblocksX numblocksY cropsize"
     exit
 fi
 
 mkdir frames_block
 mkdir blockanimframes
 
-cropsize=$4
+cropsize=$6
 
-numblocksX=$2
-numblocksY=$3
+numblocksX=$4
+numblocksY=$5
+posX=$2
+posY=$3
 
 ffmpeg -r 20 -hide_banner -i $1 -vf scale=$((cropsize*numblocksX)):$((cropsize*numblocksY)) -c:v r210 output.avi
 
@@ -41,7 +41,7 @@ for i in $(seq $numblocksY); do
         animputputY=$((numblocksX*vidposY))
         animputputX=$((vidposX))
         animputput_realY=$((animputputY+animputputX))
-        echo $vidposX $((8+vidposY)) 0 $((cropsize*animputput_realY)) $cropsize $framecount 0 >> animations.txt
+        echo $((posX+vidposX)) $((posY+vidposY)) 0 $((cropsize*animputput_realY)) $cropsize $framecount 0 >> animations.txt
         vidposX=$((vidposX + 1))
     done
     vidposX=0
